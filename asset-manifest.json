@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/Get-workout-plan-app-react/static/css/main.17b11353.css",
+    "main.js": "/Get-workout-plan-app-react/static/js/main.67f5db83.js",
+    "static/js/453.18ee9ef3.chunk.js": "/Get-workout-plan-app-react/static/js/453.18ee9ef3.chunk.js",
+    "index.html": "/Get-workout-plan-app-react/index.html",
+    "main.17b11353.css.map": "/Get-workout-plan-app-react/static/css/main.17b11353.css.map",
+    "main.67f5db83.js.map": "/Get-workout-plan-app-react/static/js/main.67f5db83.js.map",
+    "453.18ee9ef3.chunk.js.map": "/Get-workout-plan-app-react/static/js/453.18ee9ef3.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.17b11353.css",
+    "static/js/main.67f5db83.js"
+  ]
+}
