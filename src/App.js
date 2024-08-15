@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './App.css';
-import ResultPage from './pages/ResultPage/ResultPage.js';
-import Form from './pages/Form/Form.js';
+import ResultPage from './pages/ResultPage/ResultPage';
+import Form from './pages/Form/Form';
 
 function App() {
   const [workoutText, setWorkoutText] = useState('Loading workout plan...');
@@ -12,20 +12,31 @@ function App() {
 
   useEffect(() => {
     const fetchWorkoutPlan = async () => {
-      try {
-        const response = await axios.post(`https://generativelanguage.googleapis.com/v1/models/gemini-pro:generateContent?key=${KEY}`, {
-          contents: [{
-            parts: [{
-              text: `Create a workout plan with age 22, height 5 feet 10 inches, weight 75 kg, gender male, gym-goer type beginner, and Yes include abs exercises. Additional information: .`,
-            }],
-          }],
-        }, {
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        });
+      if (Object.keys(formData).length === 0) return; // Exit if formData is empty
 
-        const generatedText = response.data.candidates[0]?.content?.parts[0]?.text || 'No workout plan available.';
+      try {
+        const response = await axios.post(
+          `https://generativelanguage.googleapis.com/v1/models/gemini-pro:generateContent?key=${KEY}`,
+          {
+            contents: [
+              {
+                parts: [
+                  {
+                    text: formData,
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          }
+        );
+
+        const generatedText =
+          response.data.candidates[0]?.content?.parts[0]?.text || 'No workout plan available.';
         setWorkoutText(generatedText);
       } catch (error) {
         console.error('Error fetching workout plan:', error);
@@ -34,22 +45,17 @@ function App() {
     };
 
     fetchWorkoutPlan();
-  }, []);
+  }, [formData]);
 
-  const handleClick = () => {
-    setFormStatus(1);
-  };
-
-  return (<>
+  return (
     <div className="app">
       {formStatus === 0 ? (
         <Form setFormData={setFormData} setFormStatus={setFormStatus} />
       ) : (
-      <ResultPage workoutText={workoutText} />
+        <ResultPage workoutText={workoutText} />
       )}
-    </div> 
-
-    </>);
+    </div>
+  );
 }
 
 export default App;

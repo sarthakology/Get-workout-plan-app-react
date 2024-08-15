@@ -25,7 +25,7 @@ const Form = ({ setFormData, setFormStatus }) => {
     e.preventDefault();
     
     // Create the descriptive string
-    const description = `Create a workout plan with age ${formData.age}, height ${formData.heightFeet} feet ${formData.heightInches} inches, weight ${formData.weight} kg, gender ${formData.gender}, gym-goer type ${formData.gymGoerStatus}, and ${formData.includeAbs ? 'Yes' : 'No'} include abs exercises. Additional information: ${formData.otherInformation}.`;
+    const description = `Create a 6 days gym workout plan with age ${formData.age}, height ${formData.heightFeet} feet ${formData.heightInches} inches, weight ${formData.weight} kg, gender ${formData.gender}, gym-goer type ${formData.gymGoerStatus}, and ${formData.includeAbs ? 'Yes' : 'No'} include abs exercises. Additional information: ${formData.otherInformation}.`;
     
     setFormData(description); // Pass the descriptive string to parent
     console.log('Form Data:', description); // Print form data to the console
